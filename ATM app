@@ -1,0 +1,57 @@
+#include <iostream>
+using namespace std;
+
+void showmenu() {
+    cout << "********MENU*********"<<endl;
+    cout << "1. Check balance" << endl;
+    cout << "2. Withdraw" << endl;
+    cout << "3. Deposit " << endl;
+    cout << "4. Exit"<<endl;
+
+
+}
+
+int main()
+{
+    int choice;
+    int  balance = 500;
+    do {
+        showmenu();
+        cout << "Enter your choice= ";
+        cin >> choice;
+        system("cls");
+        switch (choice)
+        {
+        case 1: {
+            cout << "you balance is" << balance << " $" << endl;
+            break;
+        }
+        case 2: {
+            cout << "Withdraw: "<<endl;
+            int withdraw;
+            cout << "Amount you want to withdraw= ";
+            cin >> withdraw;
+            if (withdraw <= balance) {
+
+
+                balance -= withdraw;
+                cout << "balance after withdraw= " << balance;
+            }
+            else cout << " not enough money";
+             break;
+        }
+        case 3: {
+            cout << "deposit:";
+            int depositamount;
+            cout << "enter amount of deposit= ";
+            cin >> depositamount;
+            balance += depositamount;
+            cout << "balance after deposit = " << balance;
+            break;
+        }
+
+
+        }
+    } while (choice != 4);
+    
+}
