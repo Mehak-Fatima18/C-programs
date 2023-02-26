@@ -1,0 +1,14 @@
+#include <iostream>
+#include<string>
+#include<cstring>
+using namespace std;
+
+
+int main()
+{
+    char name[] = " mehak";
+    for (int i = 5; i > 0; i--) {
+        cout<<name[i];
+    }
+    
+}
