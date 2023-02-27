@@ -9,7 +9,7 @@ int main() {
 		int pages;
 		float price;
 	};
-	struct book b1 = { "English","loius partridge",300,550.25 };
+	struct book b1 = { "English","louis partridge",300,550.25 };
 	cout << "Title is " << b1.title<<endl;
 	cout << "Author is " << b1.author << endl;
 	cout << "Pages are " << b1.pages<<endl;
