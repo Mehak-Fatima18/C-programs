@@ -1,0 +1,18 @@
+#include <iostream>
+#include<string>
+using namespace std;
+
+int main() {
+	struct book {
+		string title;
+		string author;
+		int pages;
+		float price;
+	};
+	struct book b1 = { "English","loius partridge",300,550.25 };
+	cout << "Title is " << b1.title<<endl;
+	cout << "Author is " << b1.author << endl;
+	cout << "Pages are " << b1.pages<<endl;
+	cout << "Price is " << b1.price;
+
+}
