@@ -1,0 +1,21 @@
+#include <iostream>
+#include<string>
+using namespace std;
+
+int main() {
+	struct address {
+		int phone;
+		char city[15];
+		int postal;
+		
+	};
+	struct emp {
+		char name[20];
+		struct address a;
+	};
+	struct emp e = { "Mehak",0334232,"ISB",345 };
+	cout << "Name\t Phone no.\t City \t Postal Code";
+	cout << endl;
+	cout << e.name << "\t" << e.a.phone << "\t" << e.a.city << "\t" << e.a.postal;
+	
+}
