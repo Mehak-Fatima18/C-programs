@@ -1,0 +1,53 @@
+#include <iostream>
+#include<string>
+using namespace std;
+struct card {
+	int number;
+	int suit;
+};
+int main() {
+	card temp,choice,prize;
+	int position;
+	const int clubs = 0; //suits
+	const int diamonds = 1;
+	const int hearts = 2;
+	const int spades = 3;
+	const int jack = 11; //face cards
+	const int queen = 12;
+	const int king = 13;
+	const int ace = 14;
+	card card1 = { 7,hearts };
+	cout << "card1 is 7 of hearts" << endl;
+	card card2 = { jack,queen };
+	cout << "card 2 is jack of queen " << endl;
+	card card3 = { ace,spades };
+	cout << "card3 is ace of spades" << endl;
+	prize = card3;
+	cout << "i am swapping 1 and 3" << endl;
+	temp = card3;
+	card3 = card1;
+	card1 = temp;
+	cout << "i am swapping 2 and 3" << endl;
+	temp = card3;
+	card2 = card3;
+	card3 = temp;
+	cout << "i am swapping 1 and 2" << endl;
+	temp = card1;
+	card1 = card2;
+	card2 = temp;
+	cout << "now where ace of spades is (1,2 or 3)" << endl;
+	cin >> position;
+	switch (position) {
+	case 1:
+		choice = card1; break;
+	case 2:
+		choice = card2; break;
+	case 3:
+		choice = card3; break;
+	}
+	if (choice.number == prize.number && choice.suit == prize.suit) 
+		cout << "You win\n";
+	else
+		cout << "You lose";
+	
+}
