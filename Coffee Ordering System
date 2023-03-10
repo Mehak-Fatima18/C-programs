@@ -1,0 +1,205 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+using namespace std;
+
+//function for displaying bill
+void bill(string name,int price, int tax, int net) {
+    cout << "                                                         " << endl;
+    cout << "                                                         " << endl;
+    cout << "                                                         " << endl;
+    cout << "\n===================================RECEIPT=============================================" << endl;
+    cout << "Customer Name: " << name<<endl;
+    cout << "Price of coffees: PKR " << price << endl;
+    cout << "Additional Tax (15%): PKR " << tax << endl;
+    cout << "Total Amount: PKR " << net<<endl;
+    cout << "                              ENJOY YOUR COFFEE ;)";
+    cout << "\n=================================THANK YOU=============================================" << endl;
+    cout << "                                                                                         " << endl;
+    cout << "                                                         " << endl;
+    cout << "                                                         " << endl;
+}
+//structure for card game
+struct card {
+    int number;
+    int suit;
+};
+//function diplaying quotes
+void displayQuote(string* quote) {
+    cout << *quote << endl;
+}
+//structure for coffee menu
+struct Coffee {
+    string name;
+    int price;
+};
+
+int main()
+{
+    cout << "=======================================================================================" << endl;
+    cout << "                         .......WELCOME TO TIM HORTONS....... " << endl;
+    string quotes[4] = {
+    "                            Coffee is a hug in a mug",
+    "                     A morning without coffee is like sleep",
+    "           More Expresso,Less Depresso_More Caffeine,Less Stress scene",
+    "                       Coffee because adulting is hard"
+    };
+    cout << "=======================================================================================" << endl;
+    for (int i = 0; i < 4; i++) {
+        displayQuote(&quotes[i]);
+    }
+
+    cout << "=======================================================================================" << endl;
+
+    Coffee coffees[] = {
+         {"Espresso", 789},
+         {"Double Espresso", 800},
+         {"Cappuccino", 670},
+         {"Latte", 500},
+         {"Americano", 520},
+         {"Mocha", 600},
+         {"Flat White", 739},
+         {"Hot Chocolate", 800},
+         {"Frauppuccino", 830},
+         {"Iced Americano", 500},
+         {"Caramel Iced Latte", 530},
+         {"Mocha Iced Latte", 630},
+         {"Hazelnut Iced Latte", 600},
+         {"Black Coffee", 530},
+         {"Cardamom Tea", 630},
+         {"Babyccino", 250},
+         {"Ristretto", 670},
+        {"Toffee Cappuccino",540},
+        {"Dopio",350},
+        {"Irish Coffee",490},
+        {"Chai Latte",500},
+        {"Macchiato ",460},
+        {"Cold Brew",400},
+        {"Caramel Macchiato",750}
+    };
+
+    cout << "                                    COFFEE MENU " << endl;
+    cout << "=======================================================================================" << endl;
+
+    for (int i = 0; i < 24; i++) {
+        cout << i + 1 << ". " << coffees[i].name << " - PKR " << coffees[i].price << endl;
+    }
+    cout << "=======================================================================================" << endl;
+    fstream f;
+    f.open("mehak.txt", ios::out);
+    if (f.is_open()) {
+        int total_price = 0;
+        int total_tax = 0;
+        int total_net = 0;
+
+
+        cout << "\n=============================PLACE YOUR ORDER HERE=====================================" << endl;
+        int choice;
+        int quantity;
+        string name;
+        cout << "Enter your name: ";
+        getline(cin,name);
+        while (true) {
+            do {
+                cout << "---------------------------------------------------------------------------------------" << endl;
+                cout << "Enter the number of the coffee you want to order (enter 0 to stop ordering): ";
+                cin >> choice;
+
+                if (choice < 0 || choice > 24) {
+                    cout << "Invalid choice. Please enter a number between 0 and 17." << endl;
+                }
+
+            } while (choice < 0 || choice >24);
+
+            if (choice == 0) {
+                break; // stop ordering
+            }
+
+            cout << "How many? ";
+            cin >> quantity;
+            cout << "---------------------------------------------------------------------------------------" << endl;
+
+            int price = quantity * coffees[choice - 1].price;
+            int tax = (price / 100) * 15;
+                  int net = price + tax;
+
+            total_price += price;
+            total_tax += tax;
+            total_net += net;
+
+            // Write order data to file
+            f << "Coffee Name: " << coffees[choice - 1].name << endl << "Quantity: " << quantity << endl << "Price: " << price << endl;
+
+            cout << "Coffee Name: " << coffees[choice - 1].name << endl << "Quantity: " << quantity << endl << "Price: " << price << endl;
+
+        }
+        f << "------------------------------------------------------"<<endl;
+        f << "                        RECEIPT                           "<<endl;
+        f << "Customer Name: " << name << endl;
+        f << "Price of coffees: PKR " << total_price << endl;
+        f << "Additional Tax(15%): PKR " << total_tax << endl;
+        f<< "Total Amount: PKR " << total_net << endl;
+        f << "------------------------------------------------------";
+        bill( name,total_price, total_tax, total_net);
+        f.close();
+    }
+    //Card Game
+    string ch;
+    cout << "                             UNTIL COFFEE ARRIVES" << endl;
+    cout << "We have a card game for you if you want to play(enter yes and no) You'll be given prize if you win." << endl;
+    cin >> ch;
+    if (ch == "yes") {
+        card temp, cho, prize;
+        int position;
+        const int clubs = 0; //suits
+        const int diamonds = 1;
+        const int hearts = 2;
+        const int spades = 3;
+        const int jack = 11; //face cards
+        const int queen = 12;
+        const int king = 13;
+        const int ace = 14;
+        card card1 = { 7,hearts };
+        cout << "Card 1 is 7 of hearts"<<endl;
+        card card2 = { ace,queen };
+        cout << "Card 2 is ace of queen " << endl;
+        card card3 = { jack,spades };
+        cout << "Card 3 is jack of spades" << endl;
+        prize = card3;
+        cout << "I am swapping 1 and 3" << endl;
+        temp = card3;
+        card3 = card1;
+        card1 = temp;
+        cout << "I am swapping 2 and 3" << endl;
+        temp = card3;
+        card2 = card3;
+        card3 = temp;
+        cout << "I am swapping 1 and 2" << endl;
+        temp = card1;
+        card1 = card2;
+        card2 = temp;
+
+        cout << "Now where jack of spades is (1,2 or 3):" << endl;
+        cin >> position;
+        switch (position) {
+        case 1:
+            cho = card1;
+            break;
+        case 2:
+            cho = card2; 
+            break;
+        case 3:
+            cho = card3;
+            break;
+        }
+        if (cho.number == prize.number && cho.suit == prize.suit) {
+            cout << "You win\n";
+            cout << "Pick your prize from the table ;)";
+        }
+        else {
+            cout << "You lose" << endl;
+            cout << "GOOD LUCK next time.";
+        }
+    }
+
+}
