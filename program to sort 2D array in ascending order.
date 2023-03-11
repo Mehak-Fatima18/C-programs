@@ -1,0 +1,51 @@
+#include <iostream>
+using namespace std;
+
+const int MAX_ROWS = 10;
+const int MAX_COLS = 10;
+
+int main() {
+    int table[MAX_ROWS][MAX_COLS];
+    int numRows, numCols;
+
+    // Input number of rows and columns for table
+    cout << "Enter number of rows for table (maximum " << MAX_ROWS << "): ";
+    cin >> numRows;
+    cout << "Enter number of columns for table (maximum " << MAX_COLS << "): ";
+    cin >> numCols;
+
+    // Input values for table
+    cout << "\nEnter values for table:" << endl;
+    for (int row = 0; row < numRows; row++) {
+        for (int col = 0; col < numCols; col++) {
+            cout << "Enter value for [" << row << "][" << col << "]: ";
+            cin >> table[row][col];
+        }
+    }
+
+    // Sort values in ascending order
+    for (int row = 0; row < numRows; row++) {
+        for (int col = 0; col < numCols; col++) {
+            for (int i = row; i < numRows; i++) {
+                for (int j = 0; j < numCols; j++) {
+                    if (table[row][col] > table[i][j]) {
+                        int temp = table[row][col];
+                        table[row][col] = table[i][j];
+                        table[i][j] = temp;
+                    }
+                }
+            }
+        }
+    }
+
+    // Print values in tabular form
+    cout << "\nTable sorted in ascending order:\n" << endl;
+    for (int row = 0; row < numRows; row++) {
+        for (int col = 0; col < numCols; col++) {
+            cout  << table[row][col]<<"  ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
