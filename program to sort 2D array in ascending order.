@@ -1,48 +1,40 @@
 #include <iostream>
 using namespace std;
 
-const int MAX_ROWS = 10;
-const int MAX_COLS = 10;
+const int ROWS = 3;
+const int COLS = 3;
 
-int main() {
-    int table[MAX_ROWS][MAX_COLS];
-    int numRows, numCols;
-
-    // Input number of rows and columns for table
-    cout << "Enter number of rows for table (maximum " << MAX_ROWS << "): ";
-    cin >> numRows;
-    cout << "Enter number of columns for table (maximum " << MAX_COLS << "): ";
-    cin >> numCols;
-
-    // Input values for table
-    cout << "\nEnter values for table:" << endl;
-    for (int row = 0; row < numRows; row++) {
-        for (int col = 0; col < numCols; col++) {
-            cout << "Enter value for [" << row << "][" << col << "]: ";
-            cin >> table[row][col];
-        }
-    }
-
-    // Sort values in ascending order
-    for (int row = 0; row < numRows; row++) {
-        for (int col = 0; col < numCols; col++) {
-            for (int i = row; i < numRows; i++) {
-                for (int j = 0; j < numCols; j++) {
-                    if (table[row][col] > table[i][j]) {
-                        int temp = table[row][col];
-                        table[row][col] = table[i][j];
-                        table[i][j] = temp;
-                    }
+void bubbleSort(int arr[][COLS], int rows) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < COLS - 1; j++) {
+            for (int k = 0; k < COLS - j - 1; k++) {
+                if (arr[i][k] > arr[i][k+1]) {
+                    int temp = arr[i][k];
+                    arr[i][k] = arr[i][k+1];
+                    arr[i][k+1] = temp;
                 }
             }
         }
     }
+}
 
-    // Print values in tabular form
-    cout << "\nTable sorted in ascending order:\n" << endl;
-    for (int row = 0; row < numRows; row++) {
-        for (int col = 0; col < numCols; col++) {
-            cout  << table[row][col]<<"  ";
+int main() {
+    int arr[ROWS][COLS] = {{3, 1, 4}, {2, 6, 5}, {8, 7, 9}};
+
+    cout << "Before sorting:" << endl;
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            cout << arr[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    bubbleSort(arr, ROWS);
+
+    cout << "After sorting:" << endl;
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            cout << arr[i][j] << " ";
         }
         cout << endl;
     }
